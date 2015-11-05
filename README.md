@@ -1,1 +1,3 @@
 # template-generate
+
+start gulp
