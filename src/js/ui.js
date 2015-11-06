@@ -1,51 +1,71 @@
-var ui = {}
 var _templates = window["_templates"];
 
+ui = function(){
+	this.name = '';
+	this. context ={};
+}
 
-ui.set = function(view,context) {
-
-	var render = this.render(view,context);
-	var element = document.querySelector('#'+view);
+ui.prototype.set = function() {	
+	var render = this.render();
+	var element = document.querySelector('#'+this.name);
 	element.innerHTML = render;
-};	
+}
 
 
-ui.hide = function (view) {
-	var element = document.querySelector('#'+view);
+ui.prototype.render = function() {
+	if(typeof _templates[this.name] === 'undefined') {
+		throw 'ui: undefined template "' + this.name + '"';
+	}
+	return _templates[this.name](this.context);
+}
+
+
+
+ui.prototype.hide = function () {
+	var element = document.querySelector('#'+this.name);
 	element.style.display = "none";
 }
 
 
-ui.show = function (view) {
-	var element = document.querySelector('#'+view);
+ui.prototype.show = function () {
+	var element = document.querySelector('#'+this.name);
 	element.style.display = "block";
 }
 
+domready(function () {
 
-ui.render = function(view,context) {
-	if(typeof _templates[view] === 'undefined') {
-		throw 'ui: undefined template "' + view + '"';
-	}
-	return _templates[view](context);
-}
-
-
-var header = {
+	/*
+	*
+	* HEADER -
+	*/
+	var header = new ui;
+	header.name = 'header';
+	header.context =  {
 	title:'hello world!'
-}
+	};
+	header.set();
 
-var content = {
+	/*
+	*
+	* CONTENT -
+	*/
+	var content = new ui;
+	content.name = 'header';
+	content.context =  {
 	content1: 'content1',
 	content2: 'content2'
-}
+	};
+	content.set();
 
-var footer = {
+	/*
+	*
+	* FOOTER -
+	*/
+	var content = new ui;
+	content.name = 'header';
+	content.context =  {
 	footer: 'footer here'
-}
+	};
+	content.set();
 
-
-domready(function () {
-  ui.set('header',header);
-  ui.set('content',content);
-  ui.set('footer',footer);
 })
