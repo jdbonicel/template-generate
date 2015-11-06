@@ -50,7 +50,7 @@ domready(function () {
 	* CONTENT -
 	*/
 	var content = new ui;
-	content.name = 'header';
+	content.name = 'content';
 	content.context =  {
 	content1: 'content1',
 	content2: 'content2'
@@ -62,7 +62,7 @@ domready(function () {
 	* FOOTER -
 	*/
 	var content = new ui;
-	content.name = 'header';
+	content.name = 'footer';
 	content.context =  {
 	footer: 'footer here'
 	};
