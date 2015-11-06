@@ -2,7 +2,9 @@ var gulp = require('gulp'),
 	template = require('gulp-template-compile'),
 	concat = require('gulp-concat'),
 	minifyhtml = require('gulp-minify-html'),
-	minify = require('gulp-minify-css');
+	minify = require('gulp-minify-css'),
+  jshint = require('gulp-jshint'),
+  stylish = require('jshint-stylish');
 
 var options = {};
 options.tpl = {
@@ -45,6 +47,14 @@ gulp.task('templates', function () {
     .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('default', ['templates']);
+// check code quality of certain files
+gulp.task('hint', function() {
+  var jshintConfig = options.pkg().jshintConfig;
+  return gulp.src(['./src/js/ui.js'])
+    .pipe(jshint(jshintConfig))
+    .pipe(jshint.reporter(stylish));
+});
+
+gulp.task('default', ['templates','hint']);
 
 
