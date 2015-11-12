@@ -7,10 +7,10 @@ domready(function () {
 	*
 	* HEADER -
 	*/
-	var header = new ui;
+	var header = new Ui;
 	header.name = 'header';
-	header.context =  {
-	title:'hello world!'
+		header.context = {
+		title:'hello world!'
 	};
 	header.set();
 
@@ -18,11 +18,11 @@ domready(function () {
 	*
 	* CONTENT -
 	*/
-	var content = new ui;
+	var content = new Ui;
 	content.name = 'content';
-	content.context =  {
-	content1: 'content1',
-	content2: 'content2'
+		content.context = {
+		content1: 'content1',
+		content2: 'content2'
 	};
 	content.set();
 
@@ -30,11 +30,11 @@ domready(function () {
 	*
 	* FOOTER -
 	*/
-	var content = new ui;
+	var content = new Ui;
 	content.name = 'footer';
-	content.context =  {
-	footer: 'footer here'
+	content.context = {
+		footer: 'footer here'
 	};
 	content.set();
 
-})
+});

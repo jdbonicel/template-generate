@@ -1,10 +1,11 @@
 var gulp = require('gulp'),
-	template = require('gulp-template-compile'),
-	concat = require('gulp-concat'),
-	minifyhtml = require('gulp-minify-html'),
-	minify = require('gulp-minify-css'),
+  template = require('gulp-template-compile'),
+  concat = require('gulp-concat'),
+  minifyhtml = require('gulp-minify-html'),
+  minify = require('gulp-minify-css'),
   jshint = require('gulp-jshint'),
-  stylish = require('jshint-stylish');
+  stylish = require('jshint-stylish'),
+  uglify = require('gulp-uglify');
 
 var options = {};
 options.tpl = {
@@ -44,7 +45,20 @@ gulp.task('templates', function () {
     return gulp.src('./templates/*.html')
     .pipe(template(options.tpl).on('error', console.error.bind(console)))
     .pipe(concat('templates.js'))
+    .pipe(gulp.dest('./src/js/'));
+});
+
+gulp.task('concat-scripts', function() {
+  return gulp.src(['./src/js/templates.js', './src/js/ui.js', './src/js/app.js'])
+    .pipe(concat('all.js'))
     .pipe(gulp.dest('./dist/'));
+});
+
+
+gulp.task('compress', function() {
+  return gulp.src('dist/all.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('public_html/js/'));
 });
 
 // check code quality of certain files
@@ -55,6 +69,7 @@ gulp.task('hint', function() {
     .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('default', ['templates','hint']);
+
+gulp.task('default', ['hint','templates','concat-scripts','compress']);
 
 

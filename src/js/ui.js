@@ -1,40 +1,39 @@
-/*jslint node: true */
-/* jshint browser: true */
-/* global _templates:true, ui:true */
+/* jslint node: true */
+/* global _templates:true, Ui:true, document:true */
 
-'use strict';
+"use strict";
 /*
-* UI CLASS -
+* Ui CLASS -
 */
 
-ui = function(){
+Ui = function(){
 	this.name = '';
 	this. context ={};
 };
 
-ui.prototype.set = function() {	
+Ui.prototype.set = function() {	
 	var render = this.render();
 	var element = document.querySelector('#'+this.name);
 	element.innerHTML = render;
 };
 
 
-ui.prototype.render = function() {
+Ui.prototype.render = function() {
 	if(typeof _templates[this.name] === 'undefined') {
-		throw 'ui: undefined template "' + this.name + '"';
+		throw 'UI: undefined template "' + this.name + '"';
 	}
 	return _templates[this.name](this.context);
 };
 
 
 
-ui.prototype.hide = function () {
+Ui.prototype.hide = function () {
 	var element = document.querySelector('#'+this.name);
 	element.style.display = "none";
 };
 
 
-ui.prototype.show = function () {
+Ui.prototype.show = function () {
 	var element = document.querySelector('#'+this.name);
 	element.style.display = "block";
 };
