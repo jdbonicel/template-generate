@@ -3,11 +3,12 @@ var _templates = window["_templates"];
 
 domready(function () {
 
+
 	/*
 	*
 	* HEADER -
 	*/
-	var header = new Ui;
+	var header = new Ui();
 	header.name = 'header';
 		header.context = {
 		title:'hello world!'
@@ -18,7 +19,7 @@ domready(function () {
 	*
 	* CONTENT -
 	*/
-	var content = new Ui;
+	var content = new Ui();
 	content.name = 'content';
 		content.context = {
 		content1: 'content1',
@@ -30,11 +31,11 @@ domready(function () {
 	*
 	* FOOTER -
 	*/
-	var content = new Ui;
-	content.name = 'footer';
-	content.context = {
+	var footer = new Ui();
+	footer.name = 'footer';
+	footer.context = {
 		footer: 'footer here'
 	};
-	content.set();
+	footer.set();
 
 });
